@@ -1,0 +1,74 @@
+\documentclass[a4paper, 11pt]{report}
+
+\usepackage[latin1]{inputenc}%encodage
+\usepackage[T1]{fontenc}%coupures de mots, accents
+\usepackage[french]{babel}
+\usepackage{xspace}%restaure les espaces après les commandes de babel
+\usepackage{textcomp}%caractères spéciaux...
+\usepackage[table]{xcolor}%couleur
+\usepackage[nottoc]{tocbibind}
+\usepackage[pdftitle={3M101 : dynamique finie}, pdfauthor={Kristiyan TOMOV, Alexandre MARIN}, linkcolor=blue, colorlinks=true, urlcolor=blue]{hyperref}
+
+\usepackage{amsmath}%pour les maths
+\usepackage{amssymb}%pour les maths
+\usepackage{amsthm}%pour les théorèmes
+\usepackage[french]{algorithm2e}%algorithmes
+\usepackage{graphicx}%graphiques
+
+\input{def_alex}
+\input{def_kris}
+
+\begin{document}
+
+%page de garde
+\date{2 mai 2017}
+\author{Kristiyan Tomov\\Alexandre Marin}
+\title{3M101 : dynamique finie}
+\maketitle
+
+%sommaire
+\tableofcontents
+\clearpage
+
+%introduction
+\section{Introduction}
+\input{intro}
+\clearpage
+
+%partie 1
+\section{Notations et pr\'esentation des exemples}
+\subsection{Notations}
+\input{partie1a}
+\subsection{Exemples \'etudi\'es}
+\input{partie1b}
+\clearpage
+
+%partie 2
+\section{R\'esultats th\'eoriques}
+\subsection{R\'esultats g\'en\'eraux}
+\input{partie2a}
+\subsection{Am\'eliorations des algorithmes et autres r\'esultats}
+\input{partie2b}
+\clearpage
+
+%partie 3
+\section{Observations et conjectures}
+\subsection{Observations}
+\input{partie3a}
+\subsection{Conjectures}
+\input{partie3b}
+\clearpage
+
+%conclusion
+\section{Conclusion}
+\input{conclusion}
+\clearpage
+
+\nocite{*}%à enlever si citation
+%bibliographie et sitographie
+\bibliography{doc}
+\bibliographystyle{plain}
+
+%annexes ?
+
+\end{document}
