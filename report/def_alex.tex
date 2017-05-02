@@ -1,4 +1,15 @@
 \addto\captionsfrench{\renewcommand\bibname{R\'ef\'erences}}
 \addto\captionsfrench{\renewcommand\tablename{\FBfigtabshape Tableau}}
 \renewcommand\thesection{\Roman{section}}
-\renewcommand\section[1]{\setcounter{subsection}{0}\addtocounter{section}{1}\bigskip\hspace*{\stretch{1}}{\Large \bfseries \thesection~#1}\addcontentsline{toc}{section}{\thesection{} #1}\hspace*{\stretch{1}} \bigskip}
+\renewcommand\thesubsection{\alph{subsection}}
+\renewcommand\section[1]{\setcounter{subsection}{0}\addtocounter{section}{1}\bigskip\hspace*{\stretch{1}}{\Large \bfseries \thesection~#1}\phantomsection\addcontentsline{toc}{section}{\thesection{} #1}\hspace*{\stretch{1}} \bigskip}
+
+\newtheorem{thm}{Th\'eor\`eme}[section]
+\newtheorem{csq}[thm]{Cons\'equence}
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{definition}[thm]{D\'efinition}
+\newtheorem{rem}[thm]{Remarque}
+\newtheorem{alg}[thm]{Algorithme}
+\newtheorem{conj}[thm]{Conjecture}
+\newcommand\csg[2]{\textup{$O_{#1}$\textasteriskcentered[#2]}}
+\newcommand\cycle[1]{\textup{$O_{#1}$}}

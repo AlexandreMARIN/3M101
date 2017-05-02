@@ -1,1 +1,14 @@
 %partie 1b
+On pr\'esente ici deux exemples que l'on va \'etudier tout au long de ce rapport.
+
+\paragraph{Exemple 1}
+
+\paragraph{\og Trafic automobile discret\fg{} : }l'ensemble $E$ contient des \og routes \fg{} toriques, c'est-\`a-dire des \'el\'ements correspondant aux \'ecritures en base $2$ sur $n$ bits d'entiers positifs : un $1$ repr\'esente une voiture et un $0$ repr\'esente un espace vide. Ainsi $E$ est de cardinal $2^n$. Pour $i\in [\![0,n-1]\!]$, on note $R_i$ l'$(i+1)$-\`eme bit de $R$ \`a partir de la droite. La fonction \'etudi\'ee ici est la suivante : 
+\[\begin{aligned}f:\;&E\rightarrow E\\&R\mapsto R'\end{aligned}\]
+
+o\`u
+
+\[R'_{i}=\begin{cases}(\neg R_{i}\wedge R_{i+1})\vee(R_{i}\wedge R_{i-1}) &\text{si }0<i<n-1\\ (\neg R_{0}\wedge R_{1})\vee(R_{0}\wedge R_{n-1}) &\text{si }i=0\\ (\neg R_{n-1}\wedge R_{0})\vee(R_{n-1}\wedge R_{n-2}) &\text{si }i=n-1\end{cases}\text{ .}\]
+
+Cette fonction n'est en fait que la formalisation du ph\'enom\`ene circulatoire concernant les routes de $E$ : \`a l'instant suivant une voiture peut se trouver \`a tel emplacement si et seulement si elle y est bloqu\'ee ou si elle n'\'etait pas bloqu\'ee \`a la position pr\'ec\'edente. Notons que les voitures se d\'eplacent de la gauche vers la droite.
+\par

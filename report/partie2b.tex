@@ -1,1 +1,87 @@
 %partie 2b
+\begin{lem}[trafic automobile]
+Les routes \'etant toriques, le nombre de voitures reste constant lors de la circulation. Pour tout $k\in [\![0, n]\!]$, en notant $E_k$ le sous-ensemble de $E$ contenant les routes sur lesquelles circulent exactement $k$ voitures, on obtient \[E = \underset{k\in [\![0, n]\!]}{\bigsqcup} E_k\] et \[f(E) = \underset{k\in [\![0, n]\!]}{\bigsqcup} f(E_{k})\ \text{.}\]
+\par
+\end{lem}
+
+\begin{csq}[trafic automobile]
+En appliquant l'algorithme \ref{alg1} \`a chaque $E_k$, la complexit\'e m\'emoire est moindre : elle est en $O(C^{n/2}_{n})$.
+\end{csq}
+
+\begin{thm}[\'egalit\'e de sous-graphes]\label{eg}
+Soient $E_1$ et $E_2$ deux parties de $E$ stables par $f$. Alors $G_{f_{|E_{1}}}$ et $G_{f_{|E_{2}}}$ ont la m\^eme structure si et seulement s'il existe $\phi:E_{1}\rightarrow E_{2}$ bijective qui commute avec $f$.
+\end{thm}
+\begin{proof}
+On d\'emontre les implications r\'eciproques.
+Supposons que les graphes des restrictions de $f$ \`a $E_1$ et \`a $E_2$ aient la m\^eme struture, c'est-\`a-dire en particulier qu'il existe $\phi:E_{1}\rightarrow E_{2}$ telle que $\left\{\phi(x)\rightarrow \phi(f(x)) \middle| x\in E_{1}\right\}$ soit l'ensemble des arcs de $G_{f_{|E_{2}}}$. Cet ensemble s'\'ecrit aussi $\left\{\phi(x)\rightarrow f(\phi(x)) \middle| x\in E_{1}\right\}$, ce qui implique que $f$ et $\phi$ commutent. Enfin l'ensemble des arcs de $G_{f_{|E_{2}}}$ s'\'ecrit encore $\left\{x\rightarrow f(x) \middle| x\in E_{2}\right\}$ donc $\phi$ est surjective. $E_1$ et $E_2$ \'etant de m\^eme cardinal par supposition, $\phi$ est bijective.
+
+R\'eciproquement supposons qu'il existe $\phi:E_{1}\rightarrow E_{2}$ bijective qui commute avec $f$. Alors $E_1$ et $E_2$ sont de m\^eme cardinal. De plus $\left\{x\rightarrow f(x) \middle| x\in E_{2}\right\}=\left\{\phi(x)\rightarrow f(\phi(x)) \middle| x\in E_{1}\right\}=\left\{\phi(x)\rightarrow \phi(f(x)) \middle| x\in E_{1}\right\}$ est l'ensemble des arcs de $G_{f_{|E_{2}}}$. D'o\`u l'\'egalit\'e des structures des graphes.
+\end{proof}
+
+\begin{csq}[dualit\'e -- trafic automobile]
+On pose :
+
+\begin{itemize}
+\item $I:E\rightarrow E$ l'inversion bit \`a bit;
+\item $S:E\rightarrow E$ la sym\'etrie;
+\item $\bar{f}:E\rightarrow E$ la fonction duale de $f$ permettant la circulation de droite \`a gauche.
+\end{itemize}
+
+Alors :
+\begin{align*}
+\bar{f}=S\circ f\circ S\\ I\circ \bar{f} = f\circ I
+\end{align*}
+
+et :
+\begin{align*}
+\forall k\in [\![0, n]\!],\, &I(E_{k}) = E_{n-k}\\&S(E_{k}) = E_{k}
+\end{align*}
+
+Enfin $I$ et $S$ sont involutives et commutent.
+
+En posant $\phi=S\circ I$, on constate que l'on peut appliquer pour tout $k$ dans $[\![0, n]\!]$ le th\'eor\`eme \ref{eg} aux parties $E_k$ et $E_{n-k}$. Il suffit d'appliquer l'algorithme \ref{alg1} \`a $\bigcup_{k\in [\![0, n/2]\!]}E_k$ pour conna\^itre le graphe de $f$.
+\end{csq}
+
+\begin{lem}[stabilit\'e -- trafic automobile]\label{stability}
+Soit $k$ dans $[\![0, n/2]\!]$ et soit $r$ dans $E_k$. Alors $r$ appartient \`a un circuit si et seulement si $r$ ne contient que des 1 espac\'es par au moins un 0.
+\end{lem}
+\begin{proof}[Principe de preuve]
+Il suffit de prouver qu'au fur et \`a mesure du calcul de it\'er\'ees de $f$ la longueur des blocs de 1 accol\'es d\'ecro\^it jusqu'\`a $1$.
+\end{proof}
+
+\begin{lem}[homog\'en\'eit\'e -- trafic automobile]\label{homog}
+Les composantes connexes de $G_f$ sont homog\`enes.
+\end{lem}
+\begin{proof}
+Soit $k$ dans $[\![0,\scriptstyle\lfloor\frac{n}{2}\rfloor\textstyle]\!]$ et soit l'application bijective qui d\'ecale les bits des \'el\'ements de $E$ vers la droite :
+\begin{align*}
+D:\ &E_{k}\rightarrow E_{k}\\&R\mapsto D(R)
+\end{align*}
+
+o\`u
+
+\[D(R)_{i}=\begin{cases}
+R_{i+1} &\text{si }0\leq i<n-1\\
+R_{0} &\text{si }i=n-1
+\end{cases}\text{ .}\]\par
+
+On utilise les remarques suivantes :
+\begin{align*}
+&D\circ f = f\circ D\\
+&D = f \text{ sur tout circuit de }f_{|E_k}
+\end{align*}
+
+La seconde remarque se montre comme ceci : soit $R$ une route de $E_k$ ayant deux $1$ accol\'es. Comme $k\ \leq\ \scriptstyle\lfloor\frac{n}{2}\rfloor\textstyle$, il existe par le lemme \ref{stability} $p$ minimal dans $\mathbb{N}^*$ tel que $f^{p}(R)$ n'ait que des $1$ espac\'es par au moins un $0$. Or $f^{p}(R)$ appartient \`a un circuit de $f_{|E_k}$ compos\'e uniquement de routes n'ayant pas au moins deux $1$ accol\'es : il est clair que sur de tels circuits $f$ et $D$ co\"incident.
+
+Soit donc $R$  dans $E_k$ une route ayant au moins deux 1 accol\'es et soit $p$ dans $\mathbb{N}^*$ tels que $f^{p}(R):=R_0$ appartienne \`a un circuit de $f_{|E_{k}}$. Alors :
+\[f^{p}(D(R))=D(f^{p}(R))=D(R_{0})=f(R_{0})\text{ (car }R_0\text{ fait partie d'un circuit)}\]
+
+Or $f(R_{0})$ appartient au circuit contenant $R_0$. Cela signifie que $D(R)$ se trouve sur une arborescence de racine $D(R_{0})$ et \`a la m\^eme hauteur que $R$. De plus s'il existe $R_1$ dans $E_k$ tel que $f(R_{1})=R$ alors :
+\[f(D(R_{1}))=D(R)\]
+Donc les images par $D$ des \og fils \fg{} de $R$ sont les \og fils \fg{} de $D(R)$.\par
+En raisonnant de la m\^eme mani\`ere avec $D^{-1}$ on voit que les arborescences sont donc \'egales.
+\end{proof}
+
+\begin{csq}[homog\'en\'eit\'e -- trafic automobile]
+D'apr\`es le lemme \ref{homog}, il suffit de conna\^itre le sch\'ema d'une arborescence et la longueur du circuit de chaque composante connexe pour d\'ecrire le graphe de $f$. L'algorithme \ref{alg1} peut \^etre adapt\'e pour ne calculer qu'une seule arborescence par composante connexe.
+\end{csq}

@@ -1,1 +1,53 @@
 %partie 2a
+Commen\c{c}ons par un r\'esultat important :
+
+\begin{thm}[forme des composantes connexes]%théorème 1
+\end{thm}
+
+On peut en d\'eduire l'algorithme suivant :
+
+\clearpage
+\begin{alg}\label{alg1}
+\begin{algorithm}[H]
+\SetKwInOut{Input}{Entr\'ee}
+\SetKwInOut{Output}{Sortie}
+\SetKwInOut{Var}{Variables}
+\SetKwBlock{Do}{It\'erer}{Boucler}
+\Input{$L$ : liste des \'el\'ements de $E$, ensemble fini\\$f$ : application de $E$ dans $E$}
+\Output{le graphe $G_f$}
+\Var{$R$ : liste courante constitu\'ee d'\'el\'ements de $E$\\$i$ : entier\\$P$ : tableau contenant les positions des \'el\'ements de $E$ dans le graphe (les cases de $P$ ne sont pas initialis\'ees et $L[j]$ correspond \`a $P[j]$ pour tout $j$ dans $[\![0, 2^{n}-1]\!]$)}
+\BlankLine
+\Tq{$L$ contient un \'el\'ement $e_0$ de $E$ avec $L[i_0]=e_0$ et $P[i_0]$ n'est pas initialis\'ee}{
+$i\leftarrow 0$\;
+$R[0]\leftarrow e_0$\;
+\Do{
+$e\leftarrow f(R[i])$\;
+\eSi{$e$ existe dans $R$}{
+r\'ecup\'erer son index $i_e$ dans $R$\;
+\eSi{$i_{e}=0$}{
+ajouter le circuit $R$ au graphe\;
+}{
+ajouter le chemin $R[0, i_{e}]$ et le circuit $R[i_{e}, i]$ au graphe\;
+}
+initialiser les \'el\'ements de $P$ correspondant \`a ceux de $R$\;
+sortir de la boucle\;
+}{
+trouver l'index $i_{L}(e)$ de $e$ dans $L$\;
+$i\leftarrow i+1$\;
+$R[i]\leftarrow e$\;
+\Si{$P[i_{L}(e)]$ est initialis\'ee}{
+ajouter le chemin $R[0, i]$ au graphe\;
+mettre \`a jour les cases de $P$\;
+sortir de la boucle\;
+}
+}
+}
+}
+\end{algorithm}
+\end{alg}
+
+\clearpage
+\begin{csq}[analyse de l'algorithme \ref{alg1}]
+Cet algorithme est optimal en termes de calcul des it\'er\'es de $f$ puisqu'on effectue exactement autant de tels calculs qu'il y a d'arcs dans le graphe $G_f$. La complexit\'e m\'emoire est par contre en $O(|E|)$. Le nombre de comparaisons entre \'el\'ements de $E$ est domin\'e par le carr\'e de la hauteur de la plus haute arborescence de $G_f$ apr\`es d\'etermination de tous les circuits.
+\end{csq}
+
