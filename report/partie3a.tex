@@ -1,9 +1,145 @@
-%partie 3a
+%partie 3a 
+\paragraph{Exemple lin\'eaire :} Un programme python dont le code est joint \`a ce rapport nous donne le tableau suivant: \newline
+
+\begin{figure}[h]
+\begin{center}
+\begin{tabular}{||c  l||}
+\hline
+$n$ & composantes \\ [0.5ex] 
+\hline\hline
+2 & $(O_1*T_4)$\\ 
+\hline
+3 & $(O_3*T_2)+(O_1*T_2)$ \\
+\hline
+4 & $(O_1*T_{16})$\\
+\hline
+5 & $(O_{15}*T_2)+(O_1*T_2)$ \\
+\hline
+6 & $2(O_6*T_4)+(O_3*T_4)+(O_1*T_4)$ \\ 
+\hline
+7 & $9(O_7*T_2)+(O_1*T_2)$ \\
+\hline
+8 & $(O_1*T_{256})$ \\
+\hline
+9 & $4(O_{63}*T_2)+(O_3*T_2)+(O_1*T_2)$ \\
+\hline
+10 & $8(O_{30}*T_4)+(O_{15}*T_4)+(O_1*T_4)$ \\
+\hline
+11 & $3(O_{341}*T_2)+(O_1*T_2)$ \\
+\hline
+12 & $20(O_{12}*T_{16})+2(O_6*T_{16})+(O_3*T_{16})+(O_1*T_{16})$ \\
+\hline
+13 & $5(O_{819}*T_2)+(O_1*T_2)$ \\
+\hline
+14 & $288(O_{14}*T_4)+9(O_7*T_4)+(O_1*T_4)$ \\
+\hline
+15 & $1091(O_{15}*T_2)+3(O_5*T_2)+(O_3*T_2)+(O_1*T_2)$ \\
+\hline
+16 & $(O_1*T_{65536})$ \\
+\hline
+17 & $256(O_{255}*T_2)+3(O_{85}*T_2)+(O_1*T_2)$ \\
+\hline
+18 & $518(O_{126}*T_4)+4(O_{63}*T_4)+2(O_6*T_4)+(O_3*T_4)+(O_1*T_4)$ \\
+\hline
+\end{tabular}
+\end{center}
+\caption{graphe de $A$ en fonction de $n$}\label{tablingraph}
+\end{figure}
+
+Ce tableau nous permet de faire de nombreuses conjectures et nous inspire \`a montrer quelques th\'eor\`emes.
+
+L'\'etude des cycles est la derni\`ere composante qui nous manque pour conna\^itre la structure de toutes les composantes connexes du graphe de $A$.
+
+Commen\c cons par une observation directement inspir\'ee du tableau de la figure \ref{tablincyc} . Pour chaque taille du cycle $t$ qu'on observe chronologiquement dans le tableau, on regarde les $n$ pour lesquels un cycle de tel taille appartient au graphe ($n \leqslant 40$).
+
+\begin{figure}[!]
+\begin{center}
+ \begin{tabular}{||c  l  c||}
+ \hline
+ $t$ & $n$ & $d$ \\ [0.5ex] 
+ \hline\hline
+ 1 & $3,4,5,6,\dots ,40$ & 1\\ 
+ \hline
+ 3 & $3,6,9,12,15,\dots,39$ & 3 \\
+ \hline
+ 15 & $5,10,15,20,\dots,40$ & 5\\
+ \hline
+ 6 & $6,12,18,24,30,36$ & 6\\
+ \hline
+ 7 & $7,14,21,28,35$ & 7\\
+ \hline
+ 63 & $9,18,21,27,36$ & 9\\
+ \hline
+ 30 & $10,20,30,40$ & 10\\
+ \hline
+ 341 & $11,22,33$ & 11\\
+ \hline
+ 12 & $12,24,36$ & 12\\
+ \hline
+ 819 & $13,26,35,39$ & 13\\
+ \hline
+ 14 & $14,28$ & 14\\
+ \hline
+ 5 & $15,30$ & 15\\
+ \hline
+ 85 & $17,34$ & 17\\
+ \hline
+ 255 & $17,34$ & 17\\
+ \hline
+ 126 & $18,36$ & 18\\
+ \hline
+\end{tabular}
+\end{center}
+\caption{d\'ependance entre $t$ et $n$}\label{tablincyc}
+\end{figure}
+
+
+On remarque que pour chaque $t$ les $n$ correspondants forment une suite arithm\'etique (sauf quelques exceptions pour $t=63$ et $t=819$). Cependant, m\^eme pour les exceptions, la suite arithmétique reste bien une sous-suite. On a not\'e par $d$ la raison de cette suite.
+
+Regardons la taille du plus grand cycle $c$ dans le tableau de la figure \ref{tablincyc2} :
+
+\begin{figure}[!]
+\begin{center}
+ \begin{tabular}{||c  l  c||} 
+ \hline
+ $n$ & $c$ & $c/n$ \\ [0.5ex] 
+ \hline
+ 2 & 1 & ---\\ 
+ \hline
+ 3 & 3 & 1\\ 
+ \hline
+ 4 & 1 & ---\\ 
+ \hline
+ 5 & 15 & 3\\ 
+ \hline
+ 6 & 6 & 1\\ 
+ \hline
+ 7 & 7 & 1\\ 
+ \hline
+ 8 & 1 & ---\\ 
+ \hline
+ 9 & 63 & 7\\ 
+ \hline
+ 10 & 30 & 3\\ 
+ \hline
+ 11 & 341 & 31\\ 
+ \hline
+ 12 & 12 & 1\\ 
+ \hline
+ 13 & 819 & 63\\ 
+\hline
+\end{tabular}
+\end{center}
+\caption{d\'ependance entre $n$ et $c$}\label{tablincyc2}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \paragraph{Trafic automobile :}avant de donner les r\'esultats on introduit quelques notations.
 
 \begin{definition}
-On d\'efinit quatre arborescences visibles en annexe \ref{arbo}, not\'ees $T_1$, $T_2$, $T_3$ et $T_4$.
-On note \csg{p}{$\sum T_k$} le circuit de longueur $p$ dont chaque sommet est racine d'une arborescence dont les sous-arborescences sont les $T_k$.
+On d\'efinit quatre arborescences visibles en annexe \ref{arbo}, not\'ees $\mathcal{T}_1$, $\mathcal{T}_2$, $\mathcal{T}_3$ et $\mathcal{T}_4$.
+On note \csg{p}{$\sum \mathcal{T}_k$} le circuit de longueur $p$ dont chaque sommet est racine d'une arborescence dont les sous-arborescences sont les $\mathcal{T}_k$.
 \end{definition}
 
 On observe alors :
@@ -13,14 +149,14 @@ On observe alors :
 $n$ & graphes\\\hline
 2 & 2\cycle{1} \cycle{2}\\\hline
 3 & 2\cycle{1} 2\cycle{3}\\\hline
-4 & 2\cycle{1} 2\cycle{4} \csg{2}{$2T_{1}$}\\\hline
-5 & 2\cycle{1} 2\cycle{5} 2\csg{5}{$T_{1}$}\\\hline
-6 & 2\cycle{1} 2\cycle{3} 2\cycle{6} 2\csg{6}{$T_{1}$} \csg{2}{$T_{2}$}\\\hline
-7 & 2\cycle{1} 2\cycle{7} 2\csg{7}{$T_{1}$} 2\csg{7}{$T_{1}+T_{2}$}\\\hline
-8 & 2\cycle{1} 2\cycle{4} 4\cycle{8} 4\csg{8}{$T_{1}$} 2\csg{8}{$T_{1}+T_{2}$} \csg{2}{$2T_{1}+4T_{3}$}\\\hline
-9 & 2\cycle{1} 2\cycle{3} 6\cycle{9} 6\csg{9}{$T_{1}$} 2\csg{9}{$T_{1}+T_{2}$} 2\csg{9}{$2T_{1}+T_{2}+T_{3}$}\\\hline
-10 & 2\cycle{1} 2\cycle{5} 2\csg{5}{$3T_{1}$} 8\cycle{10} 8\csg{10}{$T_{1}$} 4\csg{10}{$T_{1}+T_{2}$}\\
-& 2\csg{10}{$2T_{1}+T_{2}+T_{3}$} \csg{2}{$5T_{1}+5T_{4}$}\\\hline
+4 & 2\cycle{1} 2\cycle{4} \csg{2}{$2\mathcal{T}_{1}$}\\\hline
+5 & 2\cycle{1} 2\cycle{5} 2\csg{5}{$\mathcal{T}_{1}$}\\\hline
+6 & 2\cycle{1} 2\cycle{3} 2\cycle{6} 2\csg{6}{$\mathcal{T}_{1}$} \csg{2}{$\mathcal{T}_{2}$}\\\hline
+7 & 2\cycle{1} 2\cycle{7} 2\csg{7}{$\mathcal{T}_{1}$} 2\csg{7}{$\mathcal{T}_{1}+\mathcal{T}_{2}$}\\\hline
+8 & 2\cycle{1} 2\cycle{4} 4\cycle{8} 4\csg{8}{$\mathcal{T}_{1}$} 2\csg{8}{$\mathcal{T}_{1}+\mathcal{T}_{2}$} \csg{2}{$2\mathcal{T}_{1}+4\mathcal{T}_{3}$}\\\hline
+9 & 2\cycle{1} 2\cycle{3} 6\cycle{9} 6\csg{9}{$\mathcal{T}_{1}$} 2\csg{9}{$\mathcal{T}_{1}+\mathcal{T}_{2}$} 2\csg{9}{$2\mathcal{T}_{1}+\mathcal{T}_{2}+\mathcal{T}_{3}$}\\\hline
+10 & 2\cycle{1} 2\cycle{5} 2\csg{5}{$3\mathcal{T}_{1}$} 8\cycle{10} 8\csg{10}{$\mathcal{T}_{1}$} 4\csg{10}{$\mathcal{T}_{1}+\mathcal{T}_{2}$}\\
+& 2\csg{10}{$2\mathcal{T}_{1}+\mathcal{T}_{2}+\mathcal{T}_{3}$} \csg{2}{$5\mathcal{T}_{1}+5\mathcal{T}_{4}$}\\\hline
 \end{tabular}
 \end{center}
 \caption{graphe de $f$ dans le cas du trafic automobile}

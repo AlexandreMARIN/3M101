@@ -2,7 +2,7 @@
 \addto\captionsfrench{\renewcommand\tablename{\FBfigtabshape Tableau}}
 \renewcommand\thesection{\Roman{section}}
 \renewcommand\thesubsection{\alph{subsection}}
-\renewcommand\section[1]{\setcounter{subsection}{0}\addtocounter{section}{1}\bigskip\hspace*{\stretch{1}}{\Large \bfseries \thesection~#1}\phantomsection\addcontentsline{toc}{section}{\thesection{} #1}\hspace*{\stretch{1}} \bigskip}
+\renewcommand\section[1]{\setcounter{thm}{0}\setcounter{subsection}{0}\addtocounter{section}{1}\bigskip\hspace*{\stretch{1}}{\Large \bfseries \thesection~#1}\phantomsection\addcontentsline{toc}{section}{\thesection{} #1}\hspace*{\stretch{1}} \bigskip}
 
 \newtheorem{thm}{Th\'eor\`eme}[section]
 \newtheorem{csq}[thm]{Cons\'equence}
@@ -10,6 +10,10 @@
 \newtheorem{definition}[thm]{D\'efinition}
 \newtheorem{rem}[thm]{Remarque}
 \newtheorem{alg}[thm]{Algorithme}
-\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{conj}{Conjecture}
 \newcommand\csg[2]{\textup{$O_{#1}$\textasteriskcentered[#2]}}
 \newcommand\cycle[1]{\textup{$O_{#1}$}}
+
+\newcommand\intro{\setcounter{thm}{0}\bigskip\hspace*{\stretch{1}}{\Large \bfseries Introduction}\phantomsection\addcontentsline{toc}{section}{Introduction}\hspace*{\stretch{1}} \bigskip}
+
+\newcommand\conclusion{\setcounter{thm}{0}\bigskip\hspace*{\stretch{1}}{\Large \bfseries Conclusion}\phantomsection\addcontentsline{toc}{section}{Conclusion}\hspace*{\stretch{1}} \bigskip}

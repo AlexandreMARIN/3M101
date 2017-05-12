@@ -1,12 +1,18 @@
 %partie 2a
-Commen\c{c}ons par un r\'esultat important :
+Commen\c cons par un th\'eor\`eme important qui caract\'erise le graphe $G_f$ :
 
-\begin{thm}[forme des composantes connexes]%théorème 1
+\begin{thm}\label{thmcycle}
+Chaque composante connexe du graphe de $f$ poss\`ede un et un seul cycle.
 \end{thm}
+\begin{proof}
+Puisque l'ensemble $x, f(x), f^2(x), f^3(x), ... $ est fini il existe $p \leqslant q$ tels que $f^p(x) = f^q(x)$, ou bien il existe un cycle de p\'eriode $p-q$.\newline
+Supposons qu'il existe deux cycles dans la même composante connexe. Prenons deux \'el\'ements $x,y$ qui appartiennent respectivement au premier et deuxi\`eme cycle. Alors il existe un chemin $(x,...,y)$ qui les relie. Alors, $y$ appartient aussi au premier cycle. Toutefois, deux cycles qui ont un \'el\'ement en commun, $y$, co\"incident.
+\end{proof}
 
-On peut en d\'eduire l'algorithme suivant :
+On peut en d\'eduire l'algorithme suivant :\clearpage
 
-\clearpage
+%%%%%%%%%%
+
 \begin{alg}\label{alg1}
 \begin{algorithm}[H]
 \SetKwInOut{Input}{Entr\'ee}
@@ -48,6 +54,6 @@ sortir de la boucle\;
 
 \clearpage
 \begin{csq}[analyse de l'algorithme \ref{alg1}]
-Cet algorithme est optimal en termes de calcul des it\'er\'es de $f$ puisqu'on effectue exactement autant de tels calculs qu'il y a d'arcs dans le graphe $G_f$. La complexit\'e m\'emoire est par contre en $O(|E|)$. Le nombre de comparaisons entre \'el\'ements de $E$ est domin\'e par le carr\'e de la hauteur de la plus haute arborescence de $G_f$ apr\`es d\'etermination de tous les circuits.
+Cet algorithme est optimal en termes de calcul des it\'er\'ees de $f$ puisqu'on effectue exactement autant de tels calculs qu'il y a d'arcs dans le graphe $G_f$. La complexit\'e m\'emoire est par contre en $O(|E|)$. Le nombre de comparaisons entre \'el\'ements de $E$ est domin\'e par le carr\'e de la hauteur de la plus haute arborescence de $G_f$ apr\`es d\'etermination de tous les circuits.
 \end{csq}
 

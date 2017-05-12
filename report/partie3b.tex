@@ -1,20 +1,105 @@
 %partie 3b
+\begin{rem}[exemple lin\'eaire]
+On a d\'ej\`a vu que tous les arbres attach\'es aux cycles sont isomorphes. Alors, la question de l'\'etude des arbres se r\'eduit \`a l'\'etude d'une suite num\'erique qui associe \`a chaque $n$ la taille de l'arbre de racine $0$.
+
+Regardons cette suite: \[u_n= (2,4,2,16,2,4,2,256,2,4,2,16,2,4,2,65536,2,4,...)\]
+
+Pour simplifier, on \'etudie la suite 
+\[({w_n})_{n \in \mathbb{N}} :=(\log[2]{u_n})_{n \in \mathbb{N}}= (1,2,1,4,1,2,1,8,1,2,1,4,1,2,1,16,1,2,...)\]
+
+On reconna\^it une suite assez simple. C'est la plus grande puissance de 2 qui divise $n$.
+\end{rem}
+
+\begin{conj}[exemple lin\'eaire]\label{conj1}
+La taille de l'arbre binaire de racine $0$ est \'egale a $2^{w(n)}$ o\`u $w(n) = max \llbracket 2^k, 2^k | n\rrbracket $. Ainsi, il est isomorphe \`a $O_1*T_{2^{w(n)}}$.
+\end{conj}
+
+La suite $(w_n)_{n \in \mathbb{N}}$ \'etant tr\`es facile \`a \'etudier, cette conjecture marque la fin de l'\'etude des parties arborescentes de notre graphe.
+
+\begin{rem}[exemple lin\'eaire]
+\textit{Un fait int\'eressant :} on peut construire $w$ \`a partir de ces deux premiers termes $1,2$ et en concat\'enant \`a chaque \'etape la partie d\'ej\`a trouv\'ee sauf en doublant le dernier terme: $1,2 \mapsto 1,2,1,4 \mapsto 1,2,1,4,1,2,1,8 \mapsto 1,2,1,4,1,2,1,8,1,2,1,4,1,2,1,16 \mapsto ... etc.$
+\end{rem}
+
+\begin{conj}[exemple lin\'eaire]\label{conj2}
+Pour toute taille $t$ de cycle, il existe un $d_t$ tel que le graphe de $A: (\mathbb{Z}/2\mathbb{Z})^n \rightarrow (\mathbb{Z}/2\mathbb{Z})^n$ contient un cycle de taille $t$ si $n$ est un multiple de $d_t$ (on prend $d_t$ minimal). 
+\end{conj}
+
+\begin{rem}[exemple lin\'eaire]
+La suite $(d_t)_t$ n'est pas injective. Si $d_{t1}$ = $d_{t2}$, alors pour tout multiple de 
+$d_{t1}=d_{t2}$, on observera les deux cycles pr\'esents au même temps (c'est le cas de t=85 et t=255, $d_t = 17$). \newline
+\end{rem}
+
+\begin{conj}[exemple lin\'eaire]
+La suite $(d_t)_t$ est surjective sur l'ensemble $\mathbb{N} \backslash \llbracket 2^k , k \in \mathbb{N} \rrbracket$. \newline
+\end{conj}
+
+\begin{rem}[exemple lin\'eaire]
+Une question int\'eressante est : l'ensemble de toutes les tailles de cycles possibles est-il $\mathbb{N} \backslash \llbracket 2^k , k \in \mathbb{N} \rrbracket$ ?
+
+\paragraph{Question:} supposons qu'on connaît la structure de tous les graphes jusqu'\`a un certain $N$. Comment trouver les cycles du graphe de l'application $A$ pour $n=N+1$? 
+
+\paragraph{R\'eponse partielle:} on essaie d'appliquer les conjectures \ref{conj1} et \ref{conj2}. Pour cela, on calcule tous les diviseurs de $N+1$ sauf les puissances de $2$. Alors, l'ensemble des cycles contient:
+
+$\bigcup\limits_{l|n \backslash \llbracket  2^k | k \in \mathbb{N} \rrbracket} d^{-1}(l)$.
+
+La seule inconnue dans cette union est $d^{-1}(n)$.
+
+\textit{Exemple:} Supposons que l'on connaisse tous les graphes pour $n \leqslant 19$. On cherche les cycles pour $n=20:$
+
+Les diviseurs de 20 sont $1,2,4,5,10,20$. $2$ et $4$ sont des puissances de $2$. Aussi, on ne conna\^it pas  $d^{-1}(20)$. Par contre, pour $1,5$ et $10$ la figure \ref{tablincyc2} nous donne respectivement $1,15,30$. On conclut que l'ensemble des cycles de $A$ pour $n=20$ contient $\llbracket 1,15,30 \rrbracket$. Le programme python nous donne pour $n=20$, l'ensemble: $\llbracket 1,15,30,60 \rrbracket$ et on remarque que $d^{-1}(20) = 60$. On peut r\'eit\'erer!
+
+Cette m\'ethode nous permet de majorer le nombre de cycles $C_n$ pour tout $n$ :
+\end{rem}
+
+\begin{lem}[exemple lin\'eaire]
+Pour tout $n \geqslant 3$ , $C_n \leqslant D(n)-\log[2]{w(n)}$ avec $D$ qui compte le nombre de diviseurs et $w$ d\'efinie pr\'ec\'edemment.
+\end{lem}
+
+\begin{proof}
+On a d\'ej\`a vu que $C_n \leqslant \left\vert\bigcup\limits_{l|n \backslash \llbracket  2^k | k \in \mathbb{N} \rrbracket} d^{-1}(l)\right\vert$. Alors,  $C_n \leqslant \sum\limits_{l|n \backslash \llbracket  2^k | k \in \mathbb{N} \rrbracket} d^{-1}(l) \leqslant \sum\limits_{l|n \backslash \llbracket  2^k | k \in \mathbb{N} \rrbracket} 1 \leqslant \left\vert {l|n \backslash \llbracket  2^k | k \in \mathbb{N} \rrbracket} \right\vert = D(n) - \log[2]{w(n)}$. \newline
+\end{proof}
+
+
+\begin{proof}[V\'erification]
+Pour v\'erifier exp\'erimentalement la pr\'ecision de cette majoration, on calcule la suite $(D_n - \log[2]{w_n} - C_n)_{n \in \mathbb{N}}$ :
+
+$(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2,\newline 0, 0, 0, 2, 0, 1, 2, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 2, 4, 0, 0, 1,\newline 0, 1, 0, 2, 4, 0, 0, 0, 2, 0, 3, 2, 0, 1, 0, 0, 6, 1, 0, 2, 0, 2, 0, 1, 0, 1, 0 \dots)$ \newline
+
+On voit que la majoration est assez fine.
+\end{proof}
+
+\begin{conj}[exemple lin\'eaire]
+Pour tout $n \in \mathbb{N} \backslash \llbracket 2^k , k \in \mathbb{N} \rrbracket, n$ divise la taille du plus grand cycle.
+
+\textit{Remarque:} de plus, le quotient semble \^etre de la forme $2^k-1$.
+\end{conj}
+
+\begin{csq}[exemple lin\'eaire]
+On a ramen\'e le probl\`eme de la structure du graphe de $A$ \`a l'\'etude de ces cycles. De plus, une m\'ethode pour la d\'etermination d'une partie des cycles a \'et\'e pr\'esent\'ee. Dans cette m\'ethode une suite importante appara\^it, $(d_t)_t$. Pour mieux comprendre la d\'ecomposition en cycles, on peut s'int\'eresser \`a la suite des tailles qui rend $(d_t)_t$ croissante:
+
+\hfill
+
+$ 1,3, 15, 6, 7, 63, 30, 341, 12, 819, 14, 5, 85, 255, 126, 9709, 60, ... $
+\end{csq}
+
+%%%%%%%%%%%%%%%%%
+
 \begin{conj}[trafic automobile]
 Les longueurs des circuits sont les diviseurs de $n$.
 \end{conj}
 
 \begin{conj}[trafic automobile]
-Les circuits simples et les composantes connexes de la forme \csg{n}{$T_1$} sont pr\'esentes pour tout $n\geqslant 5$.
+Les circuits simples et les composantes connexes de la forme \csg{n}{$\mathcal{T}_1$} sont pr\'esentes pour tout $n\geqslant 5$.
 \end{conj}
 
 \begin{conj}[trafic automobile]
-Il y a un unique circuit de longueur 2 si et seulement si $n$ est pair. La hauteur des arborescences attach\'ees \`a ce circuit vaut $(n/2) - 1$ et le nombre de n\oe uds de la composante connexe vaut $C^{n/2}_{n}$.
+Il y a un unique circuit de longueur $2$ si et seulement si $n$ est pair. La hauteur des arborescences attach\'ees \`a ce circuit vaut $(n/2) - 1$ et le nombre de n\oe uds de la composante connexe vaut $C^{n/2}_{n}$.
 \end{conj}
 
 \begin{conj}[trafic automobile]
-La composante \csg{n}{$T_{1}+T_{2}$} est pr\'esente si $n\geqslant 7$.
+La composante \csg{n}{$\mathcal{T}_{1}+\mathcal{T}_{2}$} est pr\'esente si $n\geqslant 7$.
 \end{conj}
 
 \begin{conj}[trafic automobile]
-On peut construire par r\'ecurrence une suite d'arborescences $(\mathbb{T}_{n})_n$ dont les quatre premiers termes sont $T_1$, $T_2$, $T_3$ et $T_4$ de fa\c con \`a ce que toute arborescence attach\'ee \`a un circuit ait pour sous-arborescences uniquement des \'el\'ements de $(\mathbb{T}_{n})_n$.
+On peut construire par r\'ecurrence une suite d'arborescences $(\mathbb{T}_{n})_n$ dont les quatre premiers termes sont $\mathcal{T}_1$, $\mathcal{T}_2$, $\mathcal{T}_3$ et $\mathcal{T}_4$ de fa\c con \`a ce que toute arborescence attach\'ee \`a un circuit ait pour sous-arborescences uniquement des \'el\'ements de $(\mathbb{T}_{n})_n$.
 \end{conj}

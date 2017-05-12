@@ -1,4 +1,42 @@
 %partie 2b
+\begin{thm}[exemple lin\'eaire]
+Si $n$ est une puissance de $2$ alors le graphe de $A$ a un seul cycle: le cycle trivial. 
+\end{thm}
+\begin{proof}
+La matrice de l'op\'erateur $A$  dans la base canonique de l'espace vectoriel $(\mathbb{Z}/2\mathbb{Z})^n$ est:
+
+$\begin{bmatrix}
+    1 & 1 & 0 & 0\dots & 0 \\
+    0 & 1 & 1 & 0\dots & 0 \\
+    \vdots & \vdots & \vdots & \vdots \ddots & \vdots \\
+    1 & 0 & 0 & 0\dots & 1
+\end{bmatrix}$ .\newline
+
+Son polyn\^ome caract\'eristique se calcule en d\'eveloppant le d\'eterminant par rapport \`a la premi\`ere colonne. Le polynôme ainsi trouv\'e est $\chi_A = (X-1)^n + 1$.
+Alors, pour $n=2^k, \chi_A=(X-1)^{2^k} + 1 = \sum_{i=0}^{2^k} {{2^k}\choose{i}}X^i(-1)^{2^k-i} + 1$. Et comme pour tout $0<i<2^k$, ${{2^k}\choose{i}} = 0 [2]$, on obtient finalement que
+$\chi_A=X^{2^k} + (-1)^{2^k} + 1 = X^{2^k}$. On en d\'eduit que la matrice de $A$ est nilpotente et comme l'indice de nilpotence est major\'e par la dimension de l'espace, $A^n=0$. Alors, pour tout $x$ la suite $(A^k(x))_{k \in \mathbb{N}}$  stationne \`a z\'ero. Alors le seul cycle est le cycle trivial.
+\end{proof}
+
+Les preuves des th\'eor\`emes \ref{thmcsgzero} et \ref{thmiso} fournies par V. Arnold \cite{VA} sont assez techniques et laborieuses. Par cons\'equent, on ne va pas les donner ici. Cependant, ces th\'eor\`emes sont extr\^emement importants pour la suite.
+
+\begin{definition}[exemple lin\'eaire]
+On va utiliser dans la suite la notation introduite par V. Arnold \cite{VA} qui d\'enote un cycle de longueur $m$ par $O_m$ et un arbre binaire de taille $2^n$ par $T_{2^n}$. Le produit $O_m*T_{2^n}$ se d\'efinit comme le graphe d’un cycle dont chaque sommet est la racine d’un arbre binaire de taille $2^n$. Par exemple, les graphes de $A$ pour le cas $n=2$ et $3$ seront not\'es respectivement $(O_1*T_4)$ et $(O_3*T_2) + (O_1*T_2)$. Avec cette notation c’est clair que la composante connexe $(O_m*T_{2^n})$ a $m*2^n$ sommets.
+\end{definition}
+
+\begin{thm}[exemple lin\'eaire]\label{thmcsgzero}
+La composante connexe qui contient le z\'ero est un arbre binaire de racine $0$ ou bien isomorphe \`a $(O_1*T_{2^k})$ avec $k$ entier. 
+\end{thm}
+
+\begin{thm}[exemple lin\'eaire]\label{thmiso}
+Tous les arbres attach\'es aux cycles sont isomorphes \`a celui de racine $0$. 
+\end{thm}
+
+\begin{rem}[exemple lin\'eaire]
+On note que grâce aux th\'eor\`emes \ref{thmcycle} et \ref{thmcsgzero} on peut d\'ej\`a conclure pour le cas $n=2^k$. Le graphe est isomorphe \`a un arbre binaire de taille $n$ attach\'e au cycle trivial $0$. Avec notre notation pour $n = 2^k$ le graphe est donn\'e par $(O_1*T_n)$.
+\end{rem}
+
+%%%%%%%%%%%%%%%%
+
 \begin{lem}[trafic automobile]
 Les routes \'etant toriques, le nombre de voitures reste constant lors de la circulation. Pour tout $k\in [\![0, n]\!]$, en notant $E_k$ le sous-ensemble de $E$ contenant les routes sur lesquelles circulent exactement $k$ voitures, on obtient \[E = \underset{k\in [\![0, n]\!]}{\bigsqcup} E_k\] et \[f(E) = \underset{k\in [\![0, n]\!]}{\bigsqcup} f(E_{k})\ \text{.}\]
 \par
@@ -13,9 +51,9 @@ Soient $E_1$ et $E_2$ deux parties de $E$ stables par $f$. Alors $G_{f_{|E_{1}}}
 \end{thm}
 \begin{proof}
 On d\'emontre les implications r\'eciproques.
-Supposons que les graphes des restrictions de $f$ \`a $E_1$ et \`a $E_2$ aient la m\^eme struture, c'est-\`a-dire en particulier qu'il existe $\phi:E_{1}\rightarrow E_{2}$ telle que $\left\{\phi(x)\rightarrow \phi(f(x)) \middle| x\in E_{1}\right\}$ soit l'ensemble des arcs de $G_{f_{|E_{2}}}$. Cet ensemble s'\'ecrit aussi $\left\{\phi(x)\rightarrow f(\phi(x)) \middle| x\in E_{1}\right\}$, ce qui implique que $f$ et $\phi$ commutent. Enfin l'ensemble des arcs de $G_{f_{|E_{2}}}$ s'\'ecrit encore $\left\{x\rightarrow f(x) \middle| x\in E_{2}\right\}$ donc $\phi$ est surjective. $E_1$ et $E_2$ \'etant de m\^eme cardinal par supposition, $\phi$ est bijective.
+Supposons que les graphes des restrictions de $f$ \`a $E_1$ et \`a $E_2$ aient la m\^eme struture, c'est-\`a-dire en particulier qu'il existe $\phi:E_{1}\rightarrow E_{2}$ telle que $\left\{\phi(x)\rightarrow \phi(f(x)) \middle| x\in E_{1}\right\}$ soit l'ensemble des arcs de $G_{f_{|E_{2}}}$. Cet ensemble s'\'ecrit aussi \[\left\{\phi(x)\rightarrow f(\phi(x)) \middle| x\in E_{1}\right\}\], ce qui implique que $f$ et $\phi$ commutent. Enfin l'ensemble des arcs de $G_{f_{|E_{2}}}$ s'\'ecrit encore $\left\{x\rightarrow f(x) \middle| x\in E_{2}\right\}$ donc $\phi$ est surjective. $E_1$ et $E_2$ \'etant de m\^eme cardinal par supposition, $\phi$ est bijective.
 
-R\'eciproquement supposons qu'il existe $\phi:E_{1}\rightarrow E_{2}$ bijective qui commute avec $f$. Alors $E_1$ et $E_2$ sont de m\^eme cardinal. De plus $\left\{x\rightarrow f(x) \middle| x\in E_{2}\right\}=\left\{\phi(x)\rightarrow f(\phi(x)) \middle| x\in E_{1}\right\}=\left\{\phi(x)\rightarrow \phi(f(x)) \middle| x\in E_{1}\right\}$ est l'ensemble des arcs de $G_{f_{|E_{2}}}$. D'o\`u l'\'egalit\'e des structures des graphes.
+R\'eciproquement supposons qu'il existe $\phi:E_{1}\rightarrow E_{2}$ bijective qui commute avec $f$. Alors $E_1$ et $E_2$ sont de m\^eme cardinal. De plus \[\left\{x\rightarrow f(x) \middle| x\in E_{2}\right\}=\left\{\phi(x)\rightarrow f(\phi(x)) \middle| x\in E_{1}\right\}=\left\{\phi(x)\rightarrow \phi(f(x)) \middle| x\in E_{1}\right\}\] est l'ensemble des arcs de $G_{f_{|E_{2}}}$. D'o\`u l'\'egalit\'e des structures des graphes.
 \end{proof}
 
 \begin{csq}[dualit\'e -- trafic automobile]
@@ -53,7 +91,7 @@ Il suffit de prouver qu'au fur et \`a mesure du calcul de it\'er\'ees de $f$ la 
 Les composantes connexes de $G_f$ sont homog\`enes.
 \end{lem}
 \begin{proof}
-Soit $k$ dans $[\![0,\scriptstyle\lfloor\frac{n}{2}\rfloor\textstyle]\!]$ et soit l'application bijective qui d\'ecale les bits des \'el\'ements de $E$ vers la droite :
+Soit $k$ dans $[\![0,\lfloor\frac{\scriptscriptstyle n}{\scriptscriptstyle 2}\rfloor]\!]$ et soit l'application bijective qui d\'ecale les bits des \'el\'ements de $E$ vers la droite :
 \begin{align*}
 D:\ &E_{k}\rightarrow E_{k}\\&R\mapsto D(R)
 \end{align*}
@@ -71,7 +109,7 @@ On utilise les remarques suivantes :
 &D = f \text{ sur tout circuit de }f_{|E_k}
 \end{align*}
 
-La seconde remarque se montre comme ceci : soit $R$ une route de $E_k$ ayant deux $1$ accol\'es. Comme $k\ \leq\ \scriptstyle\lfloor\frac{n}{2}\rfloor\textstyle$, il existe par le lemme \ref{stability} $p$ minimal dans $\mathbb{N}^*$ tel que $f^{p}(R)$ n'ait que des $1$ espac\'es par au moins un $0$. Or $f^{p}(R)$ appartient \`a un circuit de $f_{|E_k}$ compos\'e uniquement de routes n'ayant pas au moins deux $1$ accol\'es : il est clair que sur de tels circuits $f$ et $D$ co\"incident.
+La seconde remarque se montre comme ceci : soit $R$ une route de $E_k$ ayant deux $1$ accol\'es. Comme $k\ \leq\ \lfloor\frac{\scriptscriptstyle n}{\scriptscriptstyle 2}\rfloor$, il existe par le lemme \ref{stability} $p$ minimal dans $\mathbb{N}^*$ tel que $f^{p}(R)$ n'ait que des $1$ espac\'es par au moins un $0$. Or $f^{p}(R)$ appartient \`a un circuit de $f_{|E_k}$ compos\'e uniquement de routes n'ayant pas au moins deux $1$ accol\'es : il est clair que sur de tels circuits $f$ et $D$ co\"incident.
 
 Soit donc $R$  dans $E_k$ une route ayant au moins deux 1 accol\'es et soit $p$ dans $\mathbb{N}^*$ tels que $f^{p}(R):=R_0$ appartienne \`a un circuit de $f_{|E_{k}}$. Alors :
 \[f^{p}(D(R))=D(f^{p}(R))=D(R_{0})=f(R_{0})\text{ (car }R_0\text{ fait partie d'un circuit)}\]

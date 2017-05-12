@@ -1,6 +1,6 @@
 \documentclass[a4paper, 11pt]{report}
 
-\usepackage[latin1]{inputenc}%encodage
+\usepackage[utf8]{inputenc}%encodage
 \usepackage[T1]{fontenc}%coupures de mots, accents
 \usepackage[french]{babel}
 \usepackage{xspace}%restaure les espaces après les commandes de babel
@@ -15,14 +15,15 @@
 \usepackage[french]{algorithm2e}%algorithmes
 \usepackage{graphicx}%graphiques
 
-\input{def_alex}
 \input{def_kris}
+\input{def_alex}
+
 
 \begin{document}
 
 %page de garde
 \date{2 mai 2017}
-\author{Kristiyan Tomov\\Alexandre Marin}
+\author{Kristiyan Tomov\\ Alexandre Marin}
 \title{3M101 : dynamique finie}
 \maketitle
 
@@ -31,7 +32,7 @@
 \clearpage
 
 %introduction
-\section{Introduction}
+%\section{Introduction}
 \input{intro}
 \clearpage
 
@@ -60,11 +61,13 @@
 \clearpage
 
 %conclusion
-\section{Conclusion}
+%\section{Conclusion}
 \input{conclusion}
 \clearpage
 
-\nocite{*}%à enlever si citation
+%\nocite{*}%à enlever si citation
+\nocite{GV}
+\nocite{NX}
 %bibliographie et sitographie
 \bibliography{doc}
 \bibliographystyle{plain}
@@ -72,5 +75,6 @@
 %annexes ?
 \appendix
 \input{appendixA}
+\input{appendixB}
 
 \end{document}
