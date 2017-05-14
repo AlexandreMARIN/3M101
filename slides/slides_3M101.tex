@@ -1,0 +1,62 @@
+\documentclass[usepdftitle=false, hyperref={colorlinks=true, linkcolor=blue, pdftitle={3M101 : dynamique finie}, pdfauthor={A.MARIN, K.TOMOV}, pdfsubject={dynamique finie}, pdfkeywords={dynamique finie, 3M101, Vladimir Arnold}}]{beamer}
+
+\usepackage[utf8]{inputenc}%encodage
+\usepackage[T1]{fontenc}%coupures de mots, accents
+\usepackage[french]{babel}
+\usepackage{xspace}%restaure les espaces après les commandes de babel
+\usepackage{textcomp}%caractères spéciaux...
+\usepackage{xcolor}%couleur
+
+\usepackage{amsmath}%pour les maths
+\usepackage{amssymb}%pour les maths
+\usepackage{amsthm}%pour les théorèmes
+\usepackage[french]{algorithm2e}%algorithmes
+\usepackage{graphicx}%graphiques
+
+
+%styles beamer
+\useoutertheme{infolines}
+\usecolortheme{whale}
+
+%définitions de commandes, paquets supplémentaires
+\input{def_kris}
+\input{def_alex}
+
+\begin{document}
+
+%page de garde
+\date{16 mai 2017}
+\author[K. Tomov, A. Marin]{K. Tomov, A. Marin\\encadrant : E. Ferrand}
+\title{3M101 : dynamique finie}
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+%introduction
+\section{Introduction}
+\input{intro}
+
+%partie 1
+\input{alex}
+
+%partie 2
+\input{kris}
+
+%conclusion
+\section{Conclusion}
+\input{conclusion}
+
+%sources
+\section{Sources}
+\begin{frame}{Sources}
+\nocite{*}\setbeamertemplate{bibliography item}[online]
+\bibliography{doc}
+\bibliographystyle{plain}
+\end{frame}
+
+%annexes?
+\section{Annexes}
+\input{appendix_alex}
+\input{appendix_kris}
+
+\end{document}
