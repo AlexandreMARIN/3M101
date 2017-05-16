@@ -1,4 +1,35 @@
 %
 \begin{frame}{Introduction}
+On consid\`ere un ensemble $E$ fini et une application $f:E\rightarrow E$.
 
+On d\'efinit le graphe orient\'e $G_f$ :
+\begin{description}
+\item[sommets] : les \'el\'ements de $E$;
+\item[arcs] : ce sont les fl\`eches $x\mapsto f(x)$ pour tout $x\in E$.
+\end{description}
+\end{frame}
+
+\begin{frame}{Dynamique finie}
+Il s'agit d'\'etudier les it\'erations d'une telle application $f$.
+
+Objectifs du projet :
+\begin{itemize}
+\item construire $G_f$ \`a l'aide de l'outil informatique;
+\item faire des conjectures sur $G_f$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exemples}
+Soit $n\in \mathbb{N}^*$.
+\begin{enumerate}
+\item $E=[\![0, 2^{n}-1]\!]$ et $f$ non lin\'eaire ;
+\item $E=(\mathbb{Z}/2\mathbb{Z})^n$ et $f\equiv \begin{pmatrix}
+1 & 1 & 0 & \dots & \dots & 0\\
+0 & 1 & 1 & 0 & \dots & 0\\
+\vdots & \dots & \ddots & \ddots & \ddots & \vdots\\
+\vdots & \dots & \dots & \ddots & \ddots & 0\\
+0 & 0 & \dots & 0 & 1 & 1\\
+1 & 0 & \dots & \dots & 0 & 1
+\end{pmatrix}$ .
+\end{enumerate}
 \end{frame}
